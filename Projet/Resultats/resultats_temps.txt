@@ -1,0 +1,4 @@
+Temps d'execution reconstitueReseauArbre : 0.000007 secondes
+Temps d'execution reconstitueReseauListe : 0.000003 secondes
+Temps d'execution reconstitueReseauHachage (taille 50) : 0.000004 secondes
+

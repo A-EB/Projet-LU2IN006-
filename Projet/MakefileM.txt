@@ -1,0 +1,36 @@
+CC=gcc
+CFLAGS=-Wall -Wextra -g
+DIRH = FichiersH/
+DIRC = FichiersC/
+
+all: Main
+
+Main: Main.o Chaine.o Reseau.o Hachage.o ArbreQuat.o SVGwriter.o 
+	$(CC) $(CFLAGS) -o Main Main.o Chaine.o Reseau.o Hachage.o ArbreQuat.o SVGwriter.o -lm
+
+Main.o: Main.c $(DIRH)Chaine.h $(DIRH)Reseau.h $(DIRH)Hachage.h $(DIRH)ArbreQuat.h $(DIRH)SVGwriter.h
+	$(CC) $(CFLAGS) -c Main.c
+
+Chaine.o: $(DIRC)Chaine.c $(DIRH)Chaine.h
+	$(CC) $(CFLAGS) -c $(DIRC)Chaine.c
+
+Reseau.o: $(DIRC)Reseau.c $(DIRH)Chaine.h
+	$(CC) $(CFLAGS) -c $(DIRC)Reseau.c
+
+Hachage.o: $(DIRC)Hachage.c $(DIRH)Hachage.h
+	$(CC) $(CFLAGS) -c $(DIRC)Hachage.c
+
+ArbreQuat.o: $(DIRC)ArbreQuat.c $(DIRH)ArbreQuat.h
+	$(CC) $(CFLAGS) -c $(DIRC)ArbreQuat.c
+
+SVGwriter.o: $(DIRC)SVGwriter.c $(DIRH)SVGwriter.h
+	$(CC) $(CFLAGS) -c $(DIRC)SVGwriter.c
+
+ifeq ($(OS),Windows_NT)
+    RM = del
+else
+    RM = rm -f
+endif
+
+clean:
+	$(RM) Main *.o
